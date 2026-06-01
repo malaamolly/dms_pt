@@ -64,12 +64,14 @@
             <tr class="text-left text-gray-600">
 
                 <th class="p-4">No</th>
-                <th class="p-4">Nama Client</th>
-                <th class="p-4">Jenis Perusahaan</th>
-                <th class="p-4">No Telepon</th>
-                <th class="p-4">Masa Sewa</th>
-                <th class="p-4">Status</th>
-                <th class="p-4">Aksi</th>
+<th class="p-4">Nama Client</th>
+<th class="p-4">Jenis Perusahaan</th>
+<th class="p-4">Email</th>
+<th class="p-4">No Telepon</th>
+<th class="p-4">Tanggal Berakhir</th>
+<th class="p-4">Sisa Hari</th>
+<th class="p-4">Status</th>
+<th class="p-4">Aksi</th>
 
             </tr>
 
@@ -94,25 +96,42 @@
                     {{ $client->company_type }}
                 </td>
 
-                <td class="p-4">
-                    {{ $client->phone }}
-                </td>
+                <td class="p-4">{{ $client->email }}</td>
 
-                <td class="p-4">
-                    365 Hari
-                </td>
+<td class="p-4">{{ $client->phone }}</td>
+
+<td class="p-4">
+    {{ $client->end_date ?? '-' }}
+</td>
+
+<td class="p-4">
+    {{ $client->remaining_days }} Hari
+</td>
 
                 <!-- STATUS -->
                 <td class="p-4">
 
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+    @if($client->status == 'Aktif')
 
-                        Aktif
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+            Aktif
+        </span>
 
-                    </span>
+    @elseif($client->status == 'Akan Expired')
 
-                </td>
+        <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
+            Akan Expired
+        </span>
 
+    @else
+
+        <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
+            Expired
+        </span>
+
+    @endif
+
+</td>
                 <!-- ACTION -->
                 <td class="p-4">
 

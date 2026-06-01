@@ -36,14 +36,6 @@ Route::post('/login', function (Request $request) {
 });
 
 
-Route::get('/clients/{client}', [ClientController::class, 'show'])->name('clients.show');
-
-Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])
-    ->name('clients.edit');
-
-Route::put('/clients/{client}', [ClientController::class, 'update'])
-    ->name('clients.update');
-
 Route::get('/documents/{id}/view', [DocumentController::class, 'view'])
     ->name('documents.view');
 
